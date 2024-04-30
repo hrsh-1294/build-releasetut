@@ -20,7 +20,7 @@ img_path = "qr_code.png"
 img.save(img_path)
 
 # Upload the image to GitHub repository
-github_repo_url = "import qrcode
+github_repo_url = "import qrcode"
 import requests
 
 # Define the text to be encoded in the QR code
