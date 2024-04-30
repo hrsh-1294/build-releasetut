@@ -9,7 +9,7 @@ on:
 
 jobs:
   run_python_script:
-    name: Run hello.py
+    name: Run script.py
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +23,20 @@ jobs:
 
       - name: Run script.py
         run: python script.py
+
+  run_python_script_2:
+    needs: run_python_script
+    name: Run script2.py
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          puthon-version: '3.12' #use the python version you need
+
+      - name: Run script2.py
+        run: python script2.py
