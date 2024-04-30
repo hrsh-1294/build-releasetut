@@ -1,36 +1,22 @@
-import requests
 import qrcode
-img = qrcode.make('Some data here')
-type(img)  # qrcode.image.pil.PilImage
-img.save("some_file.png")
+from PIL import Image
 
-# Define the text to be encoded in the QR code
-text = "Hello, this is a QR code!"
+# Replace 'Your text here' with the text you want to encode
+text = "Your text here"
 
-# Generate the QR code
+# Create the QR code object
 qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=4,
+    version=1,  # Adjust version for larger data (optional)
+    error_correction=qrcode.constants.ERROR_CORRECT_L,  # Adjust error correction (optional)
 )
 qr.add_data(text)
 qr.make(fit=True)
+
+# Convert QR code to PIL image
 img = qr.make_image(fill_color="black", back_color="white")
 
-# Save the QR code image
-img_path = "qr_code.png"
-img.save(img_path)
+# Save the image
+filename = "qr_code.png"  # You can change the filename
+img.save(filename)
 
-# Upload the image to GitHub repository
-github_repo_url = "https://github.com/hrsh-1294/build-releasetut.git"
-upload_url = f"{github_repo_url}/blob/main/{img_path}"
-
-with open(img_path, "rb") as file:
-    files = {"file": (img_path, file)}
-    response = requests.put(upload_url, files=files)
-
-if response.status_code == 200:
-    print("QR code image uploaded successfully to GitHub repository!")
-else:
-    print("Failed to upload QR code image to GitHub repository.")
+print(f"QR code saved as: {filename}")
