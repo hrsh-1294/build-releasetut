@@ -1,5 +1,8 @@
-import qrcode
 import requests
+import qrcode
+img = qrcode.make('Some data here')
+type(img)  # qrcode.image.pil.PilImage
+img.save("some_file.png")
 
 # Define the text to be encoded in the QR code
 text = "Hello, this is a QR code!"
