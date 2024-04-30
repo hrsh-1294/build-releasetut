@@ -23,7 +23,7 @@ jobs:
       run: pip install qrcode[pil]
 
     - name: Run Python script
-      run: python generate_qr_code.py
+      run: python qr.py
 
     - name: Commit changes
       run: |
